@@ -16,8 +16,9 @@ namespace EverythingListApp.Models
         public int PplQty { get; set; }
      
         public string Location { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        
+        public Nullable<DateTime> StartDate { get; set; }
+        public Nullable<DateTime> EndDate { get; set; }
         public int Duration { get; set; }
         public Category Category { get; set; }
 

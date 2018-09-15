@@ -190,6 +190,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -201,6 +202,10 @@
     <Compile Include="Migrations\201809150700230_appcontext-v2.cs" />
     <Compile Include="Migrations\201809150700230_appcontext-v2.Designer.cs">
       <DependentUpon>201809150700230_appcontext-v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809150758527_nullable-list.cs" />
+    <Compile Include="Migrations\201809150758527_nullable-list.Designer.cs">
+      <DependentUpon>201809150758527_nullable-list.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -289,6 +294,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Lists\Create.cshtml" />
+    <Content Include="Views\Lists\Delete.cshtml" />
+    <Content Include="Views\Lists\Details.cshtml" />
+    <Content Include="Views\Lists\Edit.cshtml" />
+    <Content Include="Views\Lists\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809150700230_appcontext-v2.resx">
       <DependentUpon>201809150700230_appcontext-v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809150758527_nullable-list.resx">
+      <DependentUpon>201809150758527_nullable-list.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
