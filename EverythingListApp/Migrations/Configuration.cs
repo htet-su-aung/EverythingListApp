@@ -1,6 +1,7 @@
 namespace EverythingListApp.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -19,6 +20,14 @@ namespace EverythingListApp.Migrations
 
     protected override void Seed(EverythingListApp.Models.ApplicationDbContext context)
         {
+            var items = new List<Item>
+            {
+            new Item{ItemID=1,ItemName="sunglasses",ItemDescription="to protect UV rays",ShopLink="www.amazon.com"},
+
+                };
+            items.ForEach(s => context.Items.Add(s));
+            context.SaveChanges();
+            base.Seed(context);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

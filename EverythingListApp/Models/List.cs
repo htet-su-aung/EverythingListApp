@@ -7,6 +7,7 @@ namespace EverythingListApp.Models
 {
     public class List
     {
+
         public int ListID { get; set; }
         public string ListName { get; set; }
         public string ListDescription { get; set; }

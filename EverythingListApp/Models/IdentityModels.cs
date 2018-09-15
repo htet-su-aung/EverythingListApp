@@ -27,9 +27,9 @@ namespace EverythingListApp.Models
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<List> Lists { get; set; }
+        public DbSet<List> TBLists { get; set; }
         public DbSet<ListDetail> ListDetails { get; set; }
-    
+    //migration paw ag
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
