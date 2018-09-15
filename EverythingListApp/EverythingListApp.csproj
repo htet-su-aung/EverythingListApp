@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201809150758527_nullable-list.Designer.cs">
       <DependentUpon>201809150758527_nullable-list.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809150850456_adduseridtolist-v1.cs" />
+    <Compile Include="Migrations\201809150850456_adduseridtolist-v1.Designer.cs">
+      <DependentUpon>201809150850456_adduseridtolist-v1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -227,7 +231,7 @@
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\tooplate-style.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\home-bg.jpg" />
@@ -305,13 +309,13 @@
     <Folder Include="DAL\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -331,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809150758527_nullable-list.resx">
       <DependentUpon>201809150758527_nullable-list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809150850456_adduseridtolist-v1.resx">
+      <DependentUpon>201809150850456_adduseridtolist-v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

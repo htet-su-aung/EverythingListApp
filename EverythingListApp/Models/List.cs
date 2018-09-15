@@ -21,8 +21,9 @@ namespace EverythingListApp.Models
         public Nullable<DateTime> EndDate { get; set; }
         public int Duration { get; set; }
         public Category Category { get; set; }
-
+        public ApplicationUser UserID { get; set; }
         public ICollection<ListDetail> ListDetails { get; set; }
+      
 
     }
 }
