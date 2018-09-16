@@ -26,5 +26,6 @@ namespace EverythingListApp.Controllers
 
             return View();
         }
+
     }
 }

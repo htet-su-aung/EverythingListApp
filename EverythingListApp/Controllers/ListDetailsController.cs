@@ -10,108 +10,107 @@ using EverythingListApp.Models;
 
 namespace EverythingListApp.Controllers
 {
-    public class ListsController : Controller
+    public class ListDetailsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Lists
+        // GET: ListDetails
         public ActionResult Index()
         {
-            return View(db.TBLists.ToList());
+            return View(db.ListDetails.ToList());
         }
 
-        // GET: Lists/Details/5
+        // GET: ListDetails/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List list = db.TBLists.Find(id);
-            ListDetail listDetails = db.ListDetails.Include(list);
-            if (list == null)
+            ListDetail listDetail = db.ListDetails.Find(id);
+            if (listDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(list);
+            return View(listDetail);
         }
 
-        // GET: Lists/Create
+        // GET: ListDetails/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Lists/Create
+        // POST: ListDetails/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ListID,ListName,ListDescription,PplQty,Location,StartDate,EndDate,Duration")] List list)
+        public ActionResult Create([Bind(Include = "ItemID,ListID,ItemQty")] ListDetail listDetail)
         {
             if (ModelState.IsValid)
             {
-                db.TBLists.Add(list);
+                db.ListDetails.Add(listDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(list);
+            return View(listDetail);
         }
 
-        // GET: Lists/Edit/5
+        // GET: ListDetails/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List list = db.TBLists.Find(id);
-            if (list == null)
+            ListDetail listDetail = db.ListDetails.Find(id);
+            if (listDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(list);
+            return View(listDetail);
         }
 
-        // POST: Lists/Edit/5
+        // POST: ListDetails/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ListID,ListName,ListDescription,PplQty,Location,StartDate,EndDate,Duration")] List list)
+        public ActionResult Edit([Bind(Include = "ItemID,ListID,ItemQty")] ListDetail listDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(list).State = EntityState.Modified;
+                db.Entry(listDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(list);
+            return View(listDetail);
         }
 
-        // GET: Lists/Delete/5
+        // GET: ListDetails/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List list = db.TBLists.Find(id);
-            if (list == null)
+            ListDetail listDetail = db.ListDetails.Find(id);
+            if (listDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(list);
+            return View(listDetail);
         }
 
-        // POST: Lists/Delete/5
+        // POST: ListDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            List list = db.TBLists.Find(id);
-            db.TBLists.Remove(list);
+            ListDetail listDetail = db.ListDetails.Find(id);
+            db.ListDetails.Remove(listDetail);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
