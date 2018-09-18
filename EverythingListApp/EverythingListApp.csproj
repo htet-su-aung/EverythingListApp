@@ -192,8 +192,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ListController.cs" />
-    <Compile Include="Controllers\ListDetailsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\DbInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -291,11 +291,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\ListDetails\Create.cshtml" />
-    <Content Include="Views\ListDetails\Delete.cshtml" />
-    <Content Include="Views\ListDetails\Details.cshtml" />
-    <Content Include="Views\ListDetails\Edit.cshtml" />
-    <Content Include="Views\ListDetails\Index.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
@@ -306,6 +301,11 @@
     <Content Include="Views\List\Details.cshtml" />
     <Content Include="Views\List\Edit.cshtml" />
     <Content Include="Views\List\Index.cshtml" />
+    <Content Include="Views\Item\Create.cshtml" />
+    <Content Include="Views\Item\Delete.cshtml" />
+    <Content Include="Views\Item\Details.cshtml" />
+    <Content Include="Views\Item\Edit.cshtml" />
+    <Content Include="Views\Item\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
