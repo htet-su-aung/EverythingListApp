@@ -7,47 +7,58 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EverythingListApp.Models;
+using EverythingListApp.ViewModels;
 
 namespace EverythingListApp.Controllers
 {
-    public class ListsController : Controller
+    public class ListController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Lists
+        // GET: List
         public ActionResult Index()
         {
-            return View(db.TBLists.ToList());
+            var tBLists = db.TBLists.Include(l => l.Category);
+            return View(tBLists.ToList());
         }
 
-        // GET: Lists/Details/5
+        // GET: List/Details/5
         public ActionResult Details(int? id)
         {
+            List<ListDetail> ListDetails;
+            List list = db.TBLists.Where(x => x.ListID == id).FirstOrDefault();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List list = db.TBLists.Find(id);
-            ListDetail listDetails = db.ListDetails.Include(list);
+            else
+            {
+                ListDetails = db.ListDetails
+                                .Where(m => m.ListID == id)
+                                .Include(mc => mc.Item)
+                                .ToList();
+            }
             if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(list);
+            ListItemVM listItemVM = new ListItemVM(list, ListDetails);
+            return View(listItemVM);
         }
 
-        // GET: Lists/Create
+        // GET: List/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
             return View();
         }
 
-        // POST: Lists/Create
+        // POST: List/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ListID,ListName,ListDescription,PplQty,Location,StartDate,EndDate,Duration")] List list)
+        public ActionResult Create([Bind(Include = "ListID,ListName,ListDescription,PplQty,Location,StartDate,EndDate,Duration,CategoryID")] List list)
         {
             if (ModelState.IsValid)
             {
@@ -56,10 +67,11 @@ namespace EverythingListApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", list.CategoryID);
             return View(list);
         }
 
-        // GET: Lists/Edit/5
+        // GET: List/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -71,15 +83,16 @@ namespace EverythingListApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", list.CategoryID);
             return View(list);
         }
 
-        // POST: Lists/Edit/5
+        // POST: List/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ListID,ListName,ListDescription,PplQty,Location,StartDate,EndDate,Duration")] List list)
+        public ActionResult Edit([Bind(Include = "ListID,ListName,ListDescription,PplQty,Location,StartDate,EndDate,Duration,CategoryID")] List list)
         {
             if (ModelState.IsValid)
             {
@@ -87,10 +100,11 @@ namespace EverythingListApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", list.CategoryID);
             return View(list);
         }
 
-        // GET: Lists/Delete/5
+        // GET: List/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,7 +119,7 @@ namespace EverythingListApp.Controllers
             return View(list);
         }
 
-        // POST: Lists/Delete/5
+        // POST: List/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
