@@ -12,7 +12,6 @@ namespace EverythingListApp.Models
         public string ItemDescription { get; set; }
 
         public string ShopLink { get; set; }
-
-    
+        public virtual ICollection<ListDetail> ListDetails { get; set; }
     }
 }

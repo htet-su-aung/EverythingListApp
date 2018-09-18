@@ -10,6 +10,6 @@ namespace EverythingListApp.Models
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
 
-        public ICollection<List> TBLists { get; set; }
+        public virtual ICollection<List> TBLists { get; set; }
     }
 }

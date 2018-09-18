@@ -7,13 +7,13 @@ namespace EverythingListApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class nullablelist : IMigrationMetadata
+    public sealed partial class appmigrationv1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(nullablelist));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(appmigrationv1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809150758527_nullable-list"; }
+            get { return "201809181602528_app-migration-v1"; }
         }
         
         string IMigrationMetadata.Source
