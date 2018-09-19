@@ -28,7 +28,16 @@ namespace EverythingListApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             List list = db.TBLists.Find(id);
-            ListDetail listDetails = db.ListDetails.Include(list);
+            //ListDetail ld = db.TBLists.Include("ListDetail.ItemID");
+            
+            //using (var context = new ApplicationDbContext())
+            //{
+            //}
+            //var det = db.TBLists.Include(c => c.ListDetails).ToList();
+            //foreach (var item in det)
+            //{
+            //    list.ListDetails.Add(item.)
+            //}
             if (list == null)
             {
                 return HttpNotFound();

@@ -22,7 +22,7 @@ namespace EverythingListApp.Models
         public int Duration { get; set; }
         public Category Category { get; set; }
         public ApplicationUser UserID { get; set; }
-        public ICollection<ListDetail> ListDetails { get; set; }
+        public virtual ICollection<ListDetail> ListDetails { get; set; }
       
 
     }
