@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
+
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/flexslider.css" rel="stylesheet" />
+    <link href="~/Content/templatemo-style.css" rel="stylesheet" />
+</head>
+
+<body class="tm-gray-bg">
+    <!-- Header -->
+    <div class="tm-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
+                    <a href="#" class="tm-site-name">Holiday</a>
+                </div>
+                <div class="col-lg-6 col-md-8 col-sm-9">
+                    <div class="mobile-menu-icon">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <nav class="tm-nav">
+                        <ul>
+                            <li><a href="@Url.Action("Index","LayoutTest")" class="@ViewBag.HomeActive">Home</a></li>
+                            <li><a href="@Url.Action("About","LayoutTest")" class="@ViewBag.AboutActive">About</a></li>
+                            <li><a href="@Url.Action("Tours","LayoutTest")" class="@ViewBag.ToursActive">Our Tours</a></li>
+                            <li><a href="@Url.Action("Contact","LayoutTest")" class="@ViewBag.ContactActive">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <footer class="tm-black-bg">
+        <div class="container">
+            <div class="row">
+                <p class="tm-copyright-text">Copyright &copy; 2084 Your Company Name</p>
+            </div>
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/jquery-1.11.2.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/jquery.flexslider-min.js"></script>
+    <script src="~/Scripts/templatemo-script.js"></script>
+
+    <script>
+        // HTML document is loaded. DOM is ready.
+        $(function () {
+
+            $('#hotelCarTabs a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+
+            $('.date').datetimepicker({
+                format: 'MM/DD/YYYY'
+            });
+            $('.date-time').datetimepicker();
+
+            // https://css-tricks.com/snippets/jquery/smooth-scrolling/
+            $('a[href*=#]:not([href=#])').click(function () {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+
+        // Load Flexslider when everything is loaded.
+        $(window).load(function () {
+            //	For images only
+            $('.flexslider').flexslider({
+                controlNav: false
+            });
+
+
+        });
+    </script>
+</body>
+</html>

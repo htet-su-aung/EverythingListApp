@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -190,6 +191,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LayoutTestController.cs" />
     <Compile Include="Controllers\ListDetailsController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -231,6 +233,9 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\tooplate-style.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\flexslider.css" />
+    <Content Include="Content\templatemo-style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -263,6 +268,22 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\smoothscroll.js" />
     <Content Include="Scripts\wow.min.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\jquery.flexslider-min.js" />
+    <Content Include="Scripts\jquery-1.11.2.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\templatemo-script.js" />
+    <Content Include="fonts\FontAwesome.otf.js" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -309,6 +330,11 @@
     <Content Include="Views\ListDetails\Details.cshtml" />
     <Content Include="Views\ListDetails\Edit.cshtml" />
     <Content Include="Views\ListDetails\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\LayoutTest\Index.cshtml" />
+    <Content Include="Views\LayoutTest\Tours.cshtml" />
+    <Content Include="Views\LayoutTest\About.cshtml" />
+    <Content Include="Views\LayoutTest\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

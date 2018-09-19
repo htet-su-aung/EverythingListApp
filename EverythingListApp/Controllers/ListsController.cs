@@ -15,10 +15,10 @@ namespace EverythingListApp.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Lists
-        public ActionResult Index()
-        {
-            return View(db.TBLists.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    return View(db.TBLists.ToList());
+        //}
 
         // GET: Lists/Details/5
         public ActionResult Details(int? id)
@@ -28,7 +28,7 @@ namespace EverythingListApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             List list = db.TBLists.Find(id);
-            ListDetail listDetails = db.ListDetails.Include(list);
+            //ListDetail listDetails = db.ListDetails.Include(list);
             if (list == null)
             {
                 return HttpNotFound();
