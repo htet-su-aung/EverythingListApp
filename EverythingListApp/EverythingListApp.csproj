@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201809181602528_app-migration-v1.Designer.cs">
       <DependentUpon>201809181602528_app-migration-v1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809201412229_list-user.cs" />
+    <Compile Include="Migrations\201809201412229_list-user.Designer.cs">
+      <DependentUpon>201809201412229_list-user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -309,6 +313,7 @@
     <Content Include="Views\Item\Edit.cshtml" />
     <Content Include="Views\Item\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ListDetailsQTY.cshtml" />
+    <Content Include="Views\List\MyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,6 +339,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809181602528_app-migration-v1.resx">
       <DependentUpon>201809181602528_app-migration-v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809201412229_list-user.resx">
+      <DependentUpon>201809201412229_list-user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

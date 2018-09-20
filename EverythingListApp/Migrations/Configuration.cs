@@ -18,11 +18,11 @@ namespace EverythingListApp.Migrations
 
         protected override void Seed(EverythingListApp.Models.ApplicationDbContext context)
         {
-            var dbInit = new DbInitializer();
-            dbInit.SeedCategory(context);
-            dbInit.SeedItem(context);
-            dbInit.SeedList(context);
-            dbInit.SeedListDetail(context);
+            //var dbInit = new DbInitializer();
+            //dbInit.SeedCategory(context);
+            //dbInit.SeedItem(context);
+            //dbInit.SeedList(context);
+            //dbInit.SeedListDetail(context);
         }
     }
 }

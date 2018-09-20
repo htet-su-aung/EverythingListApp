@@ -8,17 +8,50 @@ using System.Web;
 using System.Web.Mvc;
 using EverythingListApp.Models;
 using EverythingListApp.ViewModels;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace EverythingListApp.Controllers
 {
     public class ListController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationUserManager userManager;
+
+        public ListController()
+        {
+
+        }
+
+        public ListController(ApplicationUserManager user_manager)
+        {
+            UserManager = user_manager;
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                userManager = value;
+            }
+        }
 
         // GET: List
         public ActionResult Index()
         {
-            var tBLists = db.TBLists.Include(l => l.Category);
+            var tBLists = db.TBLists.Include(l => l.Category).Include(u=>u.User);
+            return View(tBLists.ToList());
+        }
+
+        // GET: List
+        public ActionResult MyList()
+        {
+            string userId = User.Identity.GetUserId();
+            var tBLists = db.TBLists.Include(l => l.Category).Where(x=>x.UserID==userId);
             return View(tBLists.ToList());
         }
 

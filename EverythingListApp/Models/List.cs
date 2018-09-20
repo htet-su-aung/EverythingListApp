@@ -48,6 +48,9 @@ namespace EverythingListApp.Models
         public Nullable<DateTime> EndDate { get; set; }
         public int Duration { get; set; }
         public int CategoryID { get; set; }
+        public string UserID { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ICollection<ListDetail> ListDetails { get; set; }
