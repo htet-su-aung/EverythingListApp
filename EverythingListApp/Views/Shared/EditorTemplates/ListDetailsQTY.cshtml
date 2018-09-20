@@ -1,0 +1,8 @@
+﻿@model EverythingListApp.ViewModels.ListDetailsQTY
+
+@Html.HiddenFor(x => x.ItemID)
+@Html.CheckBoxFor(x => x.IsChecked)
+@Html.LabelFor(x => x.IsChecked, Model.ItemName)
+<div>@Html.EditorFor(model => model.ItemQty, new { htmlAttributes = new { @class = "form-control" , @value = Model.ItemQty.ToString() } })</div>
+<br />
+

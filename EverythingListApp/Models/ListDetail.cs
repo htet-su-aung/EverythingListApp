@@ -9,6 +9,24 @@ namespace EverythingListApp.Models
 {
     public class ListDetail
     {
+        public ListDetail()
+        {
+
+        }
+
+        public ListDetail(int itemID, int listID)
+        {
+            ItemID = itemID;
+            ListID = listID;
+        }
+
+        public ListDetail(int itemID, int itemQty, int listID)
+        {
+            ItemID = itemID;
+            ListID = listID;
+            ItemQty = itemQty;
+        }
+
         [Key, Column(Order = 0)]
         public int ItemID { get; set; }
 

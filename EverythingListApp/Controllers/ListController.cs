@@ -49,8 +49,16 @@ namespace EverythingListApp.Controllers
         // GET: List/Create
         public ActionResult Create()
         {
+            //www.stackoverflow.com/questions/37579979/mvc-5-viewmodel-passing-lists-for-the-create
+            ListCreateVM listCreateVM = new ListCreateVM();
+            List<Item> Items = db.Items.ToList();
+            foreach(Item i in Items)
+            {
+                listCreateVM.ListDetailsQTY.Add(new ListDetailsQTY(i.ItemID, i.ItemName));
+            }
+            
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
-            return View();
+            return View(listCreateVM);
         }
 
         // POST: List/Create
@@ -58,22 +66,26 @@ namespace EverythingListApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ListID,ListName,ListDescription,PplQty,Location,StartDate,EndDate,Duration,CategoryID")] List list)
+        public ActionResult Create(ListCreateVM listCreateVM)
         {
             if (ModelState.IsValid)
             {
+                List list = new List(listCreateVM.ListName, listCreateVM.ListDescription, listCreateVM.PplQty, listCreateVM.Location, listCreateVM.StartDate, listCreateVM.EndDate, listCreateVM.Duration, listCreateVM.CategoryID);
                 db.TBLists.Add(list);
+                var selectedListDetail = listCreateVM.ListDetailsQTY.Where(x => x.IsChecked).Select(x => new ListDetail(x.ItemID, x.ItemQty,list.ListID)).ToList();
+                selectedListDetail.ForEach(s => db.ListDetails.Add(s));
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", list.CategoryID);
-            return View(list);
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", listCreateVM.CategoryID);
+            return View(listCreateVM);
         }
 
         // GET: List/Edit/5
         public ActionResult Edit(int? id)
         {
+            ListCreateVM listCreateVM = new ListCreateVM();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -82,9 +94,34 @@ namespace EverythingListApp.Controllers
             if (list == null)
             {
                 return HttpNotFound();
+            } else
+            {
+                var selectedlistDetails = db.ListDetails.Where(x => x.ListID == list.ListID).ToList();
+                List<Item> Items = db.Items.ToList();
+                foreach (Item i in Items)
+                {
+                    ListDetailsQTY ldQTY = new ListDetailsQTY(i.ItemID, i.ItemName);
+                    if(selectedlistDetails.Any(x => x.ItemID == i.ItemID))
+                    {
+                        ldQTY.ItemQty = db.ListDetails.Where(x=>x.ListID==list.ListID && x.ItemID==i.ItemID).FirstOrDefault().ItemQty;
+                        //ldQTY.ItemQty = tmp_Item.ItemQty;
+                        ldQTY.IsChecked = true;
+                    }
+                    listCreateVM.ListDetailsQTY.Add(ldQTY);
+                }
             }
+
+            listCreateVM.ListID = list.ListID;
+            listCreateVM.ListName = list.ListName;
+            listCreateVM.ListDescription = list.ListDescription;
+            listCreateVM.PplQty = list.PplQty;
+            listCreateVM.Location = list.Location;
+            listCreateVM.StartDate = list.StartDate;
+            listCreateVM.EndDate = list.EndDate;
+            listCreateVM.Duration = list.Duration;
+
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", list.CategoryID);
-            return View(list);
+            return View(listCreateVM);
         }
 
         // POST: List/Edit/5
@@ -92,16 +129,46 @@ namespace EverythingListApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ListID,ListName,ListDescription,PplQty,Location,StartDate,EndDate,Duration,CategoryID")] List list)
+        public ActionResult Edit(ListCreateVM listCreateVM)
         {
             if (ModelState.IsValid)
             {
+                List list = new List(listCreateVM.ListID,listCreateVM.ListName, listCreateVM.ListDescription, listCreateVM.PplQty, listCreateVM.Location, listCreateVM.StartDate, listCreateVM.EndDate, listCreateVM.Duration, listCreateVM.CategoryID);
                 db.Entry(list).State = EntityState.Modified;
+
+                List<Item> Items = db.Items.ToList();
+                List<ListDetail> listDetails = new List<ListDetail>();
+                foreach (Item i in Items)
+                {
+                    var selectedlistDetails = db.ListDetails.Where(x => x.ListID == list.ListID).ToList();
+                    ListDetail tmp_listDetail = new ListDetail(i.ItemID,list.ListID);
+                    tmp_listDetail.List = list;
+                    tmp_listDetail.Item = i;
+
+                    // www.stackoverflow.com/questions/46351181/attaching-an-entity-of-type-xxx-enquirylineitem-failed-because-another-entity?rq=1
+
+                    if (selectedlistDetails.Any(x => x.ItemID == i.ItemID) && listCreateVM.ListDetailsQTY.Any(x=>x.ItemID==i.ItemID && x.IsChecked==true))
+                    {
+                        //tmp_listDetail.ListID = list.ListID;
+                        tmp_listDetail.ItemQty = listCreateVM.ListDetailsQTY.Where(x => x.ItemID == i.ItemID && x.IsChecked == true).FirstOrDefault().ItemQty;
+                        db.Entry(tmp_listDetail).State = EntityState.Modified;
+                    }
+                    else if (selectedlistDetails.Any(x => x.ItemID == i.ItemID) && listCreateVM.ListDetailsQTY.Any(x => x.ItemID == i.ItemID && x.IsChecked == false))
+                    {
+                        db.ListDetails.Remove(tmp_listDetail);
+                    } else if(listCreateVM.ListDetailsQTY.Any(x => x.ItemID == i.ItemID && x.IsChecked == true))
+                    {
+                        tmp_listDetail.ItemQty = listCreateVM.ListDetailsQTY.Where(x => x.ItemID == i.ItemID && x.IsChecked == true).FirstOrDefault().ItemQty;
+                        db.ListDetails.Add(tmp_listDetail);
+                    }
+                        //listDetails.Add(tmp_listDetail);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", list.CategoryID);
-            return View(list);
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", listCreateVM.CategoryID);
+            return View(listCreateVM);
         }
 
         // GET: List/Delete/5

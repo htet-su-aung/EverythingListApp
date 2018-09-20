@@ -7,6 +7,34 @@ namespace EverythingListApp.Models
 {
     public class List
     {
+        public List()
+        {
+
+        }
+        public List(string listName, string listDescription, int pplQty, string location, DateTime? startDate, DateTime? endDate, int duration, int categoryID)
+        {
+            ListName = listName;
+            ListDescription = listDescription;
+            PplQty = pplQty;
+            Location = location;
+            StartDate = startDate;
+            EndDate = endDate;
+            Duration = duration;
+            CategoryID = categoryID;
+        }
+        public List(int listID, string listName, string listDescription, int pplQty, string location, DateTime? startDate, DateTime? endDate, int duration, int categoryID)
+        {
+            ListID = listID;
+            ListName = listName;
+            ListDescription = listDescription;
+            PplQty = pplQty;
+            Location = location;
+            StartDate = startDate;
+            EndDate = endDate;
+            Duration = duration;
+            CategoryID = categoryID;
+        }
+
         public int ListID { get; set; }
         public string ListName { get; set; }
         public string ListDescription { get; set; }
