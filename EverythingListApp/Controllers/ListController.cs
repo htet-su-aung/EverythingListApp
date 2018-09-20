@@ -103,7 +103,11 @@ namespace EverythingListApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                string userId = User.Identity.GetUserId();
+                ApplicationUser user = db.Users.Where(u => u.Id == userId).FirstOrDefault();
                 List list = new List(listCreateVM.ListName, listCreateVM.ListDescription, listCreateVM.PplQty, listCreateVM.Location, listCreateVM.StartDate, listCreateVM.EndDate, listCreateVM.Duration, listCreateVM.CategoryID);
+                list.User = user;
+                list.UserID = userId;
                 db.TBLists.Add(list);
                 var selectedListDetail = listCreateVM.ListDetailsQTY.Where(x => x.IsChecked).Select(x => new ListDetail(x.ItemID, x.ItemQty,list.ListID)).ToList();
                 selectedListDetail.ForEach(s => db.ListDetails.Add(s));
