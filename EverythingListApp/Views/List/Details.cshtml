@@ -1,8 +1,7 @@
-﻿@model EverythingListApp.Models.List
+﻿@model EverythingListApp.ViewModels.ListItemVM
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -11,6 +10,14 @@
     <h4>List</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.ListName)
         </dt>
@@ -73,3 +80,41 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<hr />
+<h3>Items</h3>
+<div class="row">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                Item Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Shop Links
+            </th>
+            <th>
+                Quantity
+            </th>
+        </tr>
+        @foreach (var item in Model.ListDetails)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Item.ItemDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Item.ShopLink)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.ItemQty)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

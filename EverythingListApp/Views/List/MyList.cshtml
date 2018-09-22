@@ -1,0 +1,77 @@
+﻿@model IEnumerable<EverythingListApp.Models.List>
+
+@{
+    ViewBag.Title = "My List";
+}
+
+<h2>My List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PplQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PplQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ListID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ListID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ListID })
+            </td>
+        </tr>
+    }
+
+</table>

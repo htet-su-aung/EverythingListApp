@@ -64,6 +64,11 @@ namespace EverythingListApp.Models
 
     public class RegisterViewModel
     {
+
+        [Display(Name = "Full Name"), Required]
+        [StringLength(100)]
+        public string FullName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

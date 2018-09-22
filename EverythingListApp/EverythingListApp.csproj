@@ -192,27 +192,19 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutTestController.cs" />
-    <Compile Include="Controllers\ListDetailsController.cs" />
-    <Compile Include="Controllers\ListsController.cs" />
+    <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\DbInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809020344131_appcontext-v1.cs" />
-    <Compile Include="Migrations\201809020344131_appcontext-v1.Designer.cs">
-      <DependentUpon>201809020344131_appcontext-v1.cs</DependentUpon>
+    <Compile Include="Migrations\201809220926238_initial.cs" />
+    <Compile Include="Migrations\201809220926238_initial.Designer.cs">
+      <DependentUpon>201809220926238_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809150700230_appcontext-v2.cs" />
-    <Compile Include="Migrations\201809150700230_appcontext-v2.Designer.cs">
-      <DependentUpon>201809150700230_appcontext-v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809150758527_nullable-list.cs" />
-    <Compile Include="Migrations\201809150758527_nullable-list.Designer.cs">
-      <DependentUpon>201809150758527_nullable-list.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809150850456_adduseridtolist-v1.cs" />
-    <Compile Include="Migrations\201809150850456_adduseridtolist-v1.Designer.cs">
-      <DependentUpon>201809150850456_adduseridtolist-v1.cs</DependentUpon>
+    <Compile Include="Migrations\201809220952246_addimage.cs" />
+    <Compile Include="Migrations\201809220952246_addimage.Designer.cs">
+      <DependentUpon>201809220952246_addimage.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -225,6 +217,9 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ListCreateVM.cs" />
+    <Compile Include="ViewModels\ListDetailsQty.cs" />
+    <Compile Include="ViewModels\ListItemVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -319,26 +314,22 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Lists\Create.cshtml" />
-    <Content Include="Views\Lists\Delete.cshtml" />
-    <Content Include="Views\Lists\Details.cshtml" />
-    <Content Include="Views\Lists\Edit.cshtml" />
+    <Content Include="Views\List\Create.cshtml" />
+    <Content Include="Views\List\Delete.cshtml" />
+    <Content Include="Views\List\Details.cshtml" />
+    <Content Include="Views\List\Edit.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Lists\Index.cshtml" />
-    <Content Include="Views\ListDetails\Create.cshtml" />
-    <Content Include="Views\ListDetails\Delete.cshtml" />
-    <Content Include="Views\ListDetails\Details.cshtml" />
-    <Content Include="Views\ListDetails\Edit.cshtml" />
-    <Content Include="Views\ListDetails\Index.cshtml" />
+    <Content Include="Views\List\Index.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Views\LayoutTest\Index.cshtml" />
     <Content Include="Views\LayoutTest\Tours.cshtml" />
     <Content Include="Views\LayoutTest\About.cshtml" />
     <Content Include="Views\LayoutTest\Contact.cshtml" />
+    <Content Include="Views\List\MyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DAL\" />
+    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -359,17 +350,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809020344131_appcontext-v1.resx">
-      <DependentUpon>201809020344131_appcontext-v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809220926238_initial.resx">
+      <DependentUpon>201809220926238_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809150700230_appcontext-v2.resx">
-      <DependentUpon>201809150700230_appcontext-v2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809150758527_nullable-list.resx">
-      <DependentUpon>201809150758527_nullable-list.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809150850456_adduseridtolist-v1.resx">
-      <DependentUpon>201809150850456_adduseridtolist-v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809220952246_addimage.resx">
+      <DependentUpon>201809220952246_addimage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

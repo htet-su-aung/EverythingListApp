@@ -7,13 +7,13 @@ namespace EverythingListApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class appcontextv2 : IMigrationMetadata
+    public sealed partial class addimage : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(appcontextv2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addimage));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809150700230_appcontext-v2"; }
+            get { return "201809220952246_addimage"; }
         }
         
         string IMigrationMetadata.Source

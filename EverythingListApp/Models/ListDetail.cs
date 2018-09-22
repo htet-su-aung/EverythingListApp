@@ -9,13 +9,30 @@ namespace EverythingListApp.Models
 {
     public class ListDetail
     {
-        [Key]
-        [Column(Order = 1)]
+        public ListDetail(int itemID, int listID)
+        {
+            ItemID = itemID;
+            ListID = listID;
+        }
+
+        public ListDetail(int itemID, int itemQty, int listID)
+        {
+            ItemID = itemID;
+            ListID = listID;
+            ItemQty = itemQty;
+        }
+        public ListDetail()
+        {
+            }
+
+        [Key, Column(Order = 0)]
         public int ItemID { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Key, Column(Order = 1)]
         public int ListID { get; set; }
         public int ItemQty { get; set; }
+
+        public virtual List List { get; set; }
+        public virtual Item Item { get; set; }
     }
 }
