@@ -60,6 +60,7 @@ namespace EverythingListApp.Controllers
         {
             List<ListDetail> ListDetails;
             List list = db.TBLists.Where(x => x.ListID == id).FirstOrDefault();
+            //List list = db.TBLists.Where(x => x.ListID == id+1).FirstOrDefault();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

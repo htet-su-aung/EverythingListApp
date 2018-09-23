@@ -326,6 +326,7 @@
     <Content Include="Views\LayoutTest\About.cshtml" />
     <Content Include="Views\LayoutTest\Contact.cshtml" />
     <Content Include="Views\List\MyList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ListDetailsQty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
