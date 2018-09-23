@@ -53,7 +53,7 @@ namespace EverythingListApp.Models
         public virtual ApplicationUser User { get; set; }
         public virtual Category Category { get; set; }
         public virtual ICollection<ListDetail> ListDetails { get; set; }
-
+        public virtual ICollection<Favorite> Favorite { get; set; }
 
     }
 }

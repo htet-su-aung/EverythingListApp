@@ -10,13 +10,7 @@
     <h4>List</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.CategoryName)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.ListName)
@@ -33,7 +27,13 @@
         <dd>
             @Html.DisplayFor(model => model.ListDescription)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.PplQty)
         </dt>
@@ -76,11 +76,7 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
-    @*@Html.ActionLink("Next", "Details", new { id = Model.ListID }) |*@
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
 
 <hr />
 <h3>Items</h3>
@@ -118,4 +114,9 @@
             </tr>
         }
     </table>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
+        @*@Html.ActionLink("Next", "Details", new { id = Model.ListID }) |*@
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>

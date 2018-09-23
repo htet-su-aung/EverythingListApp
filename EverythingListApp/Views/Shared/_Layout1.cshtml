@@ -23,7 +23,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-4 col-sm-3 tm-site-name-container">
-                    <a href="#" class="tm-site-name">Holiday</a>
+                    <a href="#" class="tm-site-name">EverythingList</a>
                 </div>
                 <div class="col-lg-6 col-md-8 col-sm-9">
                     <div class="mobile-menu-icon">
@@ -31,10 +31,10 @@
                     </div>
                     <nav class="tm-nav">
                         <ul>
-                            <li><a href="@Url.Action("Index","LayoutTest")" class="@ViewBag.HomeActive">Home</a></li>
-                            <li><a href="@Url.Action("About","LayoutTest")" class="@ViewBag.AboutActive">About</a></li>
-                            <li><a href="@Url.Action("Tours","LayoutTest")" class="@ViewBag.ToursActive">Our Tours</a></li>
-                            <li><a href="@Url.Action("Contact","LayoutTest")" class="@ViewBag.ContactActive">Contact</a></li>
+                            <li><a href="@Url.Action("Index","List")" class="@ViewBag.HomeActive">Home</a></li>
+                            <li><a href="@Url.Action("About","Home")" class="@ViewBag.AboutActive">About us</a></li>
+                            <li><a href="@Url.Action("MyList","List")" class="@ViewBag.MyListActive">My Lists</a></li>
+                            <li><a href="@Url.Action("Contact","Home")" class="@ViewBag.ContactActive">Contact us</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -47,7 +47,7 @@
     <footer class="tm-black-bg">
         <div class="container">
             <div class="row">
-                <p class="tm-copyright-text">Copyright &copy; 2084 Your Company Name</p>
+                <p class="tm-copyright-text">Copyright &copy; 2084 Htet Su's code lab <p>
             </div>
         </div>
     </footer>

@@ -206,9 +206,14 @@
     <Compile Include="Migrations\201809220952246_addimage.Designer.cs">
       <DependentUpon>201809220952246_addimage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809230833425_favorite.cs" />
+    <Compile Include="Migrations\201809230833425_favorite.Designer.cs">
+      <DependentUpon>201809230833425_favorite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Favorite.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ListDetail.cs" />
@@ -356,6 +361,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809220952246_addimage.resx">
       <DependentUpon>201809220952246_addimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809230833425_favorite.resx">
+      <DependentUpon>201809230833425_favorite.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
