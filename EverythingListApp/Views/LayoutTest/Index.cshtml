@@ -14,14 +14,14 @@
             <li>
                 <div class="tm-banner-inner">
                     <h1 class="tm-banner-title">Find <span class="tm-yellow-text">EVERYTHING</span> LIST</h1>
-                    <p class="tm-banner-subtitle">Always ready to whereever you go</p>
+                    <p class="tm-banner-subtitle">Always ready to wherever you go</p>
                     <a href="#more" class="tm-banner-link">log in to get your own list</a>
                 </div>
                 <img src="~/img/banner-1.jpg" alt="Image" />
             </li>
             <li>
                 <div class="tm-banner-inner">
-                    <h1 class="tm-banner-title">Lorem <span class="tm-yellow-text">Stress free</span> travelling to </h1>
+                    <h1 class="tm-banner-title"><span class="tm-yellow-text">Stress free</span> travelling to </h1>
                     <p class="tm-banner-subtitle">Wonderful Destinations</p>
                     <a href="#more" class="tm-banner-link">log in to get your own list</a>
                 </div>
@@ -29,7 +29,7 @@
             </li>
             <li>
                 <div class="tm-banner-inner">
-                    <h1 class="tm-banner-title">Proin <span class="tm-yellow-text">Your assistant</span> of all time</h1>
+                    <h1 class="tm-banner-title"> <span class="tm-yellow-text">Your assistant</span> of all time</h1>
                     <p class="tm-banner-subtitle">Just pack up and go!</p>
                     <a href="#more" class="tm-banner-link">log in to get your own list</a>
                 </div>
@@ -47,10 +47,10 @@
             <div class="tm-home-box-1">
                 <ul class="nav nav-tabs tm-white-bg" role="tablist" id="hotelCarTabs">
                     <li role="presentation" class="active">
-                        <a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">Hotel</a>
+                        <a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">Register</a>
                     </li>
                     <li role="presentation">
-                        <a href="#car" aria-controls="car" role="tab" data-toggle="tab">Car Rental</a>
+                        <a href="#car" aria-controls="car" role="tab" data-toggle="tab">Log in</a>
                     </li>
                 </ul>
 
@@ -61,43 +61,47 @@
                             <form action="#" method="post" class="hotel-search-form">
                                 <div class="tm-form-inner">
                                     <div class="form-group">
-                                        <select class="form-control">
+                                        <input type="text" id="FullName" class="form-control" placeholder="Enter Full Name" />
+                                        @*<select class="form-control">
                                             <option value="">-- Select Hotel -- </option>
                                             <option value="shangrila">Shangri-La</option>
                                             <option value="chatrium">Chatrium</option>
                                             <option value="fourseasons">Four Seasons</option>
                                             <option value="hilton">Hilton</option>
-                                        </select>
+                                        </select>*@
                                     </div>
                                     <div class="form-group">
-                                        <div class='input-group date' id='datetimepicker1'>
+                                        <input type="email" id="Email" class="form-control" placeholder="Enter Email" />
+                                        @*<div class='input-group date' id='datetimepicker1'>
                                             <input type='text' class="form-control" placeholder="Check-in Date" />
                                             <span class="input-group-addon">
                                                 <span class="fa fa-calendar"></span>
                                             </span>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="form-group">
-                                        <div class='input-group date' id='datetimepicker2'>
+                                        <input type="password" id="Password" class="form-control" placeholder="Enter password" />
+                                        @*<div class='input-group date' id='datetimepicker2'>
                                             <input type='text' class="form-control" placeholder="Check-out Date" />
                                             <span class="input-group-addon">
                                                 <span class="fa fa-calendar"></span>
                                             </span>
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <div class="form-group margin-bottom-0">
-                                        <select class="form-control">
+                                        <input type="password" id="ConfirmPassword" class="form-control" placeholder="Confirm password" />
+                                        @*<select class="form-control">
                                             <option value="">-- Guests -- </option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                             <option value="5p">5+</option>
-                                        </select>
+                                        </select>*@
                                     </div>
                                 </div>
                                 <div class="form-group tm-yellow-gradient-bg text-center">
-                                    <button type="submit" name="submit" class="tm-yellow-btn">Check Now</button>
+                                    <button type="submit" name="submit" class="tm-yellow-btn">Register</button>
                                 </div>
                             </form>
                         </div>
@@ -107,41 +111,46 @@
                             <form action="#" method="post" class="hotel-search-form">
                                 <div class="tm-form-inner">
                                     <div class="form-group">
-                                        <select class="form-control">
+                                        <input type="email" id="Email" class="form-control" placeholder="Enter Email" />
+                                        @*<select class="form-control">
                                             <option value="">-- Select Model -- </option>
                                             <option value="shangrila">BMW</option>
                                             <option value="chatrium">Mercedes-Benz</option>
                                             <option value="fourseasons">Toyota</option>
                                             <option value="hilton">Honda</option>
-                                        </select>
+                                        </select>*@
                                     </div>
                                     <div class="form-group">
-                                        <div class='input-group date-time' id='datetimepicker3'>
+                                        <input type="password" id="Password" class="form-control" placeholder="Enter password" />
+                                        @*<div class='input-group date-time' id='datetimepicker3'>
                                             <input type='text' class="form-control" placeholder="Pickup Date" />
                                             <span class="input-group-addon">
                                                 <span class="fa fa-calendar"></span>
                                             </span>
-                                        </div>
+                                        </div>*@
                                     </div>
-                                    <div class="form-group">
-                                        <div class='input-group date-time' id='datetimepicker4'>
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="RememberMe" name="Rememberme" value="false" >
+                                        <input name="RememberMe" type="hidden" value="true">
+                                        <label for="RememberMe">Remember me?</label>
+                                        @*<div class='input-group date-time' id='datetimepicker4'>
                                             <input type='text' class="form-control" placeholder="Return Date" />
                                             <span class="input-group-addon">
                                                 <span class="fa fa-calendar"></span>
                                             </span>
-                                        </div>
+                                        </div>*@
                                     </div>
-                                    <div class="form-group">
+                                    @*<div class="form-group">
                                         <select class="form-control">
                                             <option value="">-- Options -- </option>
                                             <option value="">Child Seat</option>
                                             <option value="">GPS Navigator</option>
                                             <option value="">Insurance</option>
                                         </select>
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <div class="form-group tm-yellow-gradient-bg text-center">
-                                    <button type="submit" name="submit" class="tm-yellow-btn">Check Now</button>
+                                    <button type="submit" name="submit" class="tm-yellow-btn">Log in</button>
                                 </div>
                             </form>
                         </div>
@@ -153,32 +162,32 @@
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
                 <img src="~/img/index-01.jpg" alt="image" class="img-responsive">
-                <a href="#">
+                @*<a href="#">*@
                     <div class="tm-green-gradient-bg tm-city-price-container">
-                        <span>New York</span>
-                        <span>$6,600</span>
+                        <span>worry less</span>
+                        
                     </div>
-                </a>
+                @*</a>*@
             </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                 <img src="~/img/index-02.jpg" alt="image" class="img-responsive">
-                <a href="#">
+                @*<a href="#">*@
                     <div class="tm-red-gradient-bg tm-city-price-container">
-                        <span>Paris</span>
-                        <span>$4,200</span>
+                        <span>explore more</span>
+                       
                     </div>
-                </a>
+                @*</a>*@
             </div>
         </div>
     </div>
 
-    <div class="section-margin-top">
+    @*<div class="section-margin-top">
         <div class="row">
             <div class="tm-section-header">
                 <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
-                <div class="col-lg-6 col-md-6 col-sm-6"><h2 class="tm-section-title">Lorem Ipsum Dolor</h2></div>
+                <div class="col-lg-6 col-md-6 col-sm-6"><h2 class="tm-section-title"> Explore the lists </h2></div>
                 <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
             </div>
         </div>
@@ -237,7 +246,7 @@
                 <p class="home-description">Holiday is free Bootstrap v3.3.5 responsive template for tour and travel websites. You can download and use this layout for any purpose. You do not need to provide a credit link to us. If you have any question, feel free to <a href="http://www.facebook.com/templatemo" target="_parent">contact us</a>. Credit goes to <a rel="nofollow" href="http://unsplash.com" target="_parent">Unspash</a> for images used in this template.</p>
             </div>
         </div>
-    </div>
+    </div>*@
 </section>
 
 <!-- white bg -->
@@ -246,14 +255,14 @@
         <div class="row">
             <div class="tm-section-header section-margin-top">
                 <div class="col-lg-4 col-md-3 col-sm-3"><hr></div>
-                <div class="col-lg-4 col-md-6 col-sm-6"><h2 class="tm-section-title">Popular Packages</h2></div>
+                <div class="col-lg-4 col-md-6 col-sm-6"><h2 class="tm-section-title"> Explore the lists </h2></div>
                 <div class="col-lg-4 col-md-3 col-sm-3"><hr></div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="tm-home-box-3">
-                    <div class="tm-home-box-3-img-container">
+                    @*<div class="tm-home-box-3-img-container">
                         <img src="~/img/index-07.jpg" alt="image" class="img-responsive">
-                    </div>
+                    </div>*@
                     <div class="tm-home-box-3-info">
                         <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
                         <div class="tm-home-box-2-container">
@@ -264,11 +273,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="tm-home-box-3">
-                    <div class="tm-home-box-3-img-container">
+                    @*<div class="tm-home-box-3-img-container">
                         <img src="~/img/index-08.jpg" alt="image" class="img-responsive">
-                    </div>
+                    </div>*@
                     <div class="tm-home-box-3-info">
                         <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
                         <div class="tm-home-box-2-container">
@@ -279,11 +288,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="tm-home-box-3">
-                    <div class="tm-home-box-3-img-container">
+                    @*<div class="tm-home-box-3-img-container">
                         <img src="~/img/index-09.jpg" alt="image" class="img-responsive">
-                    </div>
+                    </div>*@
                     <div class="tm-home-box-3-info">
                         <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
                         <div class="tm-home-box-2-container">
@@ -294,21 +303,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="tm-home-box-3">
-                    <div class="tm-home-box-3-img-container">
-                        <img src="~/img/index-10.jpg" alt="image" class="img-responsive">
-                    </div>
-                    <div class="tm-home-box-3-info">
-                        <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-                        <div class="tm-home-box-2-container">
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                            <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </section>
