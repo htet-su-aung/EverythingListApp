@@ -234,11 +234,11 @@
                 <div class="tm-home-box-3">
 
                     <div class="tm-home-box-3-info">
-                        <p class="tm-home-box-3-description">@Html.DisplayFor(modelItem => item.ListDescription)</p>
+                        <p class="tm-home-box-3-description">@Html.DisplayFor(modelItem => item.ListName)</p>
                         <div class="tm-home-box-2-container">
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                            <a class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">@Html.ActionLink("Details", "Details", new { id = (item.ListID) })</span></a> 
-                            <a href="@Url.Action("Edit","List", new { id = (item.ListID) })" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
+                            <span id="fav-@item.ListID" class="favorite"> <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a></span>
+                           <a href="@Url.Action("Details","List", new { id = (item.ListID) })" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3"> Detail </span></a> 
+                            @*<a href="@Url.Action("Edit","List", new { id = (item.ListID) })" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>*@
                         </div>
                     </div>
                 </div>
@@ -275,3 +275,44 @@
         </div>
     </div>
 </section>
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(function () {
+
+        $('#favorite').click(function (e) {
+            var gg = $('#grocery_item').val();
+            var gg2 = $('#grocery_amount').val();
+            if (gg != "" && gg2 != "") {
+                //alert(gg);
+                var jsonObject = {
+                    "Grocery_item": gg,
+                    "Grocery_amount": gg2
+                };
+
+                $.ajax({
+                    url: "@Url.Action("GrocerySave")",
+                    type: "POST",
+                    data: JSON.stringify(jsonObject),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    error: function (response) {
+                        alert(json.stringify(jsonObject));
+                    },
+                    success: function (response) {
+                        alert(response);
+                    }
+                });
+            }
+            else {
+                alert("The textfield is empty");
+                return false;
+            }
+
+
+        });
+    });
+</script>*@
+
+
+}
