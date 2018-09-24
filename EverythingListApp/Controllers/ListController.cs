@@ -43,8 +43,58 @@ namespace EverythingListApp.Controllers
         // GET: List
         public ActionResult Index()
         {
-            var tBLists = db.TBLists.Include(l => l.Category).Include(u=>u.User);
-            return View(tBLists.ToList());
+            string userid = User.Identity.GetUserId();
+            ViewBag.UserID = userid;
+            //var FavLists = db.TBLists.Include(l => l.Category)
+            //                    .Include(z => z.UserID)
+            //                    .Select(x => x.Favorite
+            //                    .Where(z => z.UserID == userid)
+            //                    .Select(y => new { UserID = y.UserID, ListID = y.ListID }))
+            //                    .ToList();
+            //List<Favorite> favorites = new List<Favorite>();
+            //foreach(Favorite f in FavLists)
+            //{
+            //    if(f != null) favorites.Add(f);
+            //}
+
+            var tBLists = db.TBLists.Include(l => l.Category)
+                .Include(u=>u.User)
+                .ToList();
+            List<ListWithFavoriteVM> listVM = new List<ListWithFavoriteVM>();
+            foreach(List l in tBLists)
+            {
+                ListWithFavoriteVM lvm = new ListWithFavoriteVM(l);
+                Favorite f = db.Favorite.Where(x => x.ListID == l.ListID && x.UserID == userid).FirstOrDefault();
+                if (f != null) lvm.Favorite = true;
+                listVM.Add(lvm);
+            }
+
+            return View(listVM);
+        }
+
+        [HttpPost]
+        public JsonResult Favorite(string listid, string action)
+        {
+            string userId = User.Identity.GetUserId();
+            if(userId != null)
+            { 
+                int l_id = Int32.Parse(listid);
+                Favorite fav = db.Favorite.Where(x => x.UserID == userId && x.ListID == l_id).FirstOrDefault();
+                if (action == "add" && fav == null)
+                {
+                    fav = new Favorite();
+                    fav.ListID = l_id;
+                    fav.UserID = userId;
+                    db.Favorite.Add(fav);
+                }
+                else if(action == "remove" && fav != null)
+                {
+                    db.Favorite.Remove(fav);
+                }
+                db.SaveChanges();
+                return Json("Success");
+            }
+            return Json("Invalid User!");
         }
 
         // GET: List

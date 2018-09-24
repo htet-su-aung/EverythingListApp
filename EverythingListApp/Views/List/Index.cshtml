@@ -1,7 +1,9 @@
-﻿@model IEnumerable<EverythingListApp.Models.List>
+﻿@model IEnumerable<EverythingListApp.ViewModels.ListWithFavoriteVM>
+@using EverythingListApp.Models;
 @using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Index";
+    string check = "";
 }
 
 <h2>Index</h2>
@@ -9,7 +11,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
+            @Html.DisplayNameFor(model => model.CategoryName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ListName)
@@ -33,52 +35,95 @@
             @Html.DisplayNameFor(model => model.Duration)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Favorite)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ListName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ListDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PplQty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Duration)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @if (User.Identity.GetUserId() == item.UserID)
-            {
-                 @Html.ActionLink("Edit", "Edit", new { id = item.ListID }) <span>|</span>
-            }
-                 @Html.ActionLink("Details", "Details", new { id = item.ListID })
-            @if (User.Identity.GetUserId() == item.UserID)
-            {<span>|</span>
-                 @Html.ActionLink("Delete", "Delete", new { id = item.ListID })
-            }
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PplQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @{string checkvalue = (item.Favorite) ? "checked" : "";}
+                <input type="checkbox" id="@item.ListID" name="@item.ListID" class="favorite" @checkvalue />
+                @*@Html.CheckBoxFor(modelItem => item.Favorite)*@
+            </td>
+            <td>
+                @if (User.Identity.GetUserId() == ViewBag.UserID)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ListID }) <span>|</span>
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.ListID })
+                @if (User.Identity.GetUserId() == ViewBag.UserID)
+                {<span>|</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ListID })
+                }
+            </td>
+        </tr>
+    }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+
+        $(function () {
+
+            $('.favorite').change(function () {
+                var listid = $(this).attr('id');
+                var ischecked = $(this).is(':checked');
+                var action = (!ischecked) ? "remove" : "add";
+                
+                //alert(action);
+                //alert('changed >> ' + listid);
+                
+                $.ajax({
+                    url: "@Url.Action("Favorite")",
+                    type: "POST",
+                    data: { listid: listid, action: action },
+                    error: function (response) {
+                        alert(json.stringify(jsonObject));
+                    },
+                    success: function (response) {
+                        if (response == "Invalid User!") alert("Please Login First!");
+                        console.log(response);
+                    }
+                });
+
+
+            });
+        });
+    </script>
+}
