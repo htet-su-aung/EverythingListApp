@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<EverythingListApp.Models.List>
-
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Index";
 }
@@ -68,9 +68,15 @@
             @Html.DisplayFor(modelItem => item.User.UserName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ListID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ListID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ListID })
+            @if (User.Identity.GetUserId() == item.UserID)
+            {
+                 @Html.ActionLink("Edit", "Edit", new { id = item.ListID }) <span>|</span>
+            }
+                 @Html.ActionLink("Details", "Details", new { id = item.ListID })
+            @if (User.Identity.GetUserId() == item.UserID)
+            {<span>|</span>
+                 @Html.ActionLink("Delete", "Delete", new { id = item.ListID })
+            }
         </td>
     </tr>
 }
