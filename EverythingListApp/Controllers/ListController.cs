@@ -171,6 +171,7 @@ namespace EverythingListApp.Controllers
             if (ModelState.IsValid)
             {
                 List list = new List(listCreateVM.ListID,listCreateVM.ListName, listCreateVM.ListDescription, listCreateVM.PplQty, listCreateVM.Location, listCreateVM.StartDate, listCreateVM.EndDate, listCreateVM.Duration, listCreateVM.CategoryID);
+                list.UserID = User.Identity.GetUserId();
                 db.Entry(list).State = EntityState.Modified;
 
                 List<Item> Items = db.Items.ToList();
@@ -186,19 +187,19 @@ namespace EverythingListApp.Controllers
 
                     if (selectedlistDetails.Any(x => x.ItemID == i.ItemID) && listCreateVM.ListDetailsQTY.Any(x=>x.ItemID==i.ItemID && x.IsChecked==true))
                     {
-                        //tmp_listDetail.ListID = list.ListID;
-                        tmp_listDetail.ItemQty = listCreateVM.ListDetailsQTY.Where(x => x.ItemID == i.ItemID && x.IsChecked == true).FirstOrDefault().ItemQty;
-                        db.Entry(tmp_listDetail).State = EntityState.Modified;
+                        ListDetail ld = db.ListDetails.Where(x => x.ListID == tmp_listDetail.ListID && x.ItemID == i.ItemID).FirstOrDefault();
+                        ld.ItemQty = listCreateVM.ListDetailsQTY.Where(x => x.ItemID == i.ItemID && x.IsChecked == true).FirstOrDefault().ItemQty;
+                        db.Entry(ld).Property(x => x.ItemQty).IsModified = true;
                     }
                     else if (selectedlistDetails.Any(x => x.ItemID == i.ItemID) && listCreateVM.ListDetailsQTY.Any(x => x.ItemID == i.ItemID && x.IsChecked == false))
                     {
-                        db.ListDetails.Remove(tmp_listDetail);
+                        ListDetail ld = db.ListDetails.Where(x => x.ListID == tmp_listDetail.ListID && x.ItemID == i.ItemID).FirstOrDefault();
+                        db.ListDetails.Remove(ld);
                     } else if(listCreateVM.ListDetailsQTY.Any(x => x.ItemID == i.ItemID && x.IsChecked == true))
                     {
                         tmp_listDetail.ItemQty = listCreateVM.ListDetailsQTY.Where(x => x.ItemID == i.ItemID && x.IsChecked == true).FirstOrDefault().ItemQty;
                         db.ListDetails.Add(tmp_listDetail);
                     }
-                        //listDetails.Add(tmp_listDetail);
                 }
 
                 db.SaveChanges();
