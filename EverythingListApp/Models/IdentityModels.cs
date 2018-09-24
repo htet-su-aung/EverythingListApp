@@ -16,6 +16,7 @@ namespace EverythingListApp.Models
         public string FullName { get; set; }
 
         public virtual ICollection<List> TBLists { get; set; }
+        public virtual ICollection<Favorite> Favorite { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -37,7 +38,8 @@ namespace EverythingListApp.Models
         public DbSet<Item> Items { get; set; }
         public DbSet<List> TBLists { get; set; }
         public DbSet<ListDetail> ListDetails { get; set; }
-    //migration paw ag
+        public DbSet<Favorite> Favorite { get; set; }
+        //migration paw ag
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
