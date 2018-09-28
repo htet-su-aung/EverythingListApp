@@ -76,6 +76,11 @@ namespace EverythingListApp.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            if(result== SignInStatus.Success)
+            {
+                ApplicationDbContext db = new ApplicationDbContext();
+                Session["LoginUserName"] = db.Users.Where(x => x.Email == model.Email).FirstOrDefault().FullName.ToString();
+            }
             switch (result)
             {
                 case SignInStatus.Success:
@@ -392,7 +397,7 @@ namespace EverythingListApp.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "List");
         }
 
         //
@@ -449,7 +454,7 @@ namespace EverythingListApp.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "List");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
