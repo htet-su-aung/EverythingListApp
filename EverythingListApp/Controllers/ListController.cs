@@ -43,11 +43,60 @@ namespace EverythingListApp.Controllers
         // GET: List
         public ActionResult Index()
         {
-            var tBLists = db.TBLists.Include(l => l.Category).Include(u => u.User);
-            return View(tBLists.ToList());
+            string userid = User.Identity.GetUserId();
+            var tBLists = db.TBLists.Include(l => l.Category).Include(u => u.User).ToList();
+            List<ListWithFavoriteVM> listVM = new List<ListWithFavoriteVM>();
+            if (!string.IsNullOrEmpty(userid))
+            {
+                ViewBag.UserID = userid;
+
+                foreach (List l in tBLists)
+                {
+                    ListWithFavoriteVM lvm = new ListWithFavoriteVM(l);
+                    Favorite f = db.Favorite.Where(x => x.ListID == l.ListID && x.UserID == userid).FirstOrDefault();
+                    if (f != null) lvm.Favorite = true;
+                    listVM.Add(lvm);
+                }
+            }
+            else
+            {
+                foreach (List l in tBLists)
+                {
+                    ListWithFavoriteVM lvm = new ListWithFavoriteVM(l);
+                    listVM.Add(lvm);
+                }
+            }
+
+            return View(listVM);
+        }
+
+        [HttpPost]
+        public JsonResult Favorite(string listid, string action)
+        {
+            string userId = User.Identity.GetUserId();
+            if (userId != null)
+            {
+                int l_id = Int32.Parse(listid);
+                Favorite fav = db.Favorite.Where(x => x.UserID == userId && x.ListID == l_id).FirstOrDefault();
+                if (action == "add" && fav == null)
+                {
+                    fav = new Favorite();
+                    fav.ListID = l_id;
+                    fav.UserID = userId;
+                    db.Favorite.Add(fav);
+                }
+                else if (action == "remove" && fav != null)
+                {
+                    db.Favorite.Remove(fav);
+                }
+                db.SaveChanges();
+                return Json("Success");
+            }
+            return Json("Invalid User!");
         }
 
         // GET: List
+        [Authorize]
         public ActionResult MyList()
         {
             string userId = User.Identity.GetUserId();
@@ -113,7 +162,7 @@ namespace EverythingListApp.Controllers
                 var selectedListDetail = listCreateVM.ListDetailsQty.Where(x => x.IsChecked).Select(x => new ListDetail(x.ItemID, x.ItemQty, list.ListID)).ToList();
                 selectedListDetail.ForEach(s => db.ListDetails.Add(s));
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyList", "List");
             }
 
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", listCreateVM.CategoryID);
@@ -173,6 +222,7 @@ namespace EverythingListApp.Controllers
             if (ModelState.IsValid)
             {
                 List list = new List(listCreateVM.ListID, listCreateVM.ListName, listCreateVM.ListDescription, listCreateVM.PplQty, listCreateVM.Location, listCreateVM.StartDate, listCreateVM.EndDate, listCreateVM.Duration, listCreateVM.CategoryID);
+                list.UserID = User.Identity.GetUserId();
                 db.Entry(list).State = EntityState.Modified;
 
                 List<Item> Items = db.Items.ToList();
@@ -188,24 +238,24 @@ namespace EverythingListApp.Controllers
 
                     if (selectedlistDetails.Any(x => x.ItemID == i.ItemID) && listCreateVM.ListDetailsQty.Any(x => x.ItemID == i.ItemID && x.IsChecked == true))
                     {
-                        //tmp_listDetail.ListID = list.ListID;
-                        tmp_listDetail.ItemQty = listCreateVM.ListDetailsQty.Where(x => x.ItemID == i.ItemID && x.IsChecked == true).FirstOrDefault().ItemQty;
-                        db.Entry(tmp_listDetail).State = EntityState.Modified;
+                        ListDetail ld = db.ListDetails.Where(x => x.ListID == tmp_listDetail.ListID && x.ItemID == i.ItemID).FirstOrDefault();
+                        ld.ItemQty = listCreateVM.ListDetailsQty.Where(x => x.ItemID == i.ItemID && x.IsChecked == true).FirstOrDefault().ItemQty;
+                        db.Entry(ld).Property(x => x.ItemQty).IsModified = true;
                     }
                     else if (selectedlistDetails.Any(x => x.ItemID == i.ItemID) && listCreateVM.ListDetailsQty.Any(x => x.ItemID == i.ItemID && x.IsChecked == false))
                     {
-                        db.ListDetails.Remove(tmp_listDetail);
+                        ListDetail ld = db.ListDetails.Where(x => x.ListID == tmp_listDetail.ListID && x.ItemID == i.ItemID).FirstOrDefault();
+                        db.ListDetails.Remove(ld);
                     }
                     else if (listCreateVM.ListDetailsQty.Any(x => x.ItemID == i.ItemID && x.IsChecked == true))
                     {
                         tmp_listDetail.ItemQty = listCreateVM.ListDetailsQty.Where(x => x.ItemID == i.ItemID && x.IsChecked == true).FirstOrDefault().ItemQty;
                         db.ListDetails.Add(tmp_listDetail);
                     }
-                    //listDetails.Add(tmp_listDetail);
                 }
 
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyList", "List");
             }
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", listCreateVM.CategoryID);
             return View(listCreateVM);

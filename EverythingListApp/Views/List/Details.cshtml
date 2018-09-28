@@ -1,122 +1,139 @@
 ﻿@model EverythingListApp.ViewModels.ListItemVM
 
 @{
-    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "Detail List";
+    ViewBag.MyListActive = "active";
 }
 
-<h2>Details</h2>
+<!-- Banner -->
+<section class="tm-banner">
+    <!-- Flexslider -->
+    <div class="flexslider flexslider-banner">
+        <ul class="slides">
+            <li>
+                <div class="tm-banner-inner">
+                    <h1 class="tm-banner-title">Find <span class="tm-yellow-text">get your</span> lists</h1>
+                    <p class="tm-banner-subtitle">For Your Destinations</p>
+                    <a href="@Url.Action("MyList","List")" class="tm-banner-link">MyLists</a>
+                </div>
+                <img src="~/img/banner-2.jpg" />
+            </li>
 
-<div>
-    <h4>List</h4>
-    <hr />
-    <dl class="dl-horizontal">
+        </ul>
+    </div>
+</section>
+
+<!-- gray bg -->
+<section class="container tm-home-section-1" id="more">
+    <div class="section-margin-top">
+        <div class="row">
+            <div class="tm-section-header">
+                <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
+                <div class="col-lg-6 col-md-6 col-sm-6"><h2 class="tm-section-title">@Model.ListName</h2></div>
+                <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ListName, new { htmlAttributes = new { @class = "form-control" , @disabled = "disabled" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ListDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ListDescription, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PplQty, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.PplQty, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ListName)
-        </dt>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Category.CategoryName, "CategoryID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        @Html.EditorFor(model => model.Category.CategoryName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ListName)
-        </dd>
+                <hr />
+                <div class="control-label col-md-2"><h3>Items</h3></div>
+                <div class="col-md-offset-2 col-md-9">
+                    <div class="row">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>
+                                    Item Name
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Shop Links
+                                </th>
+                                <th>
+                                    Quantity
+                                </th>
+                            </tr>
+                            @foreach (var item in Model.ListDetails)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => item.Item.ItemName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Item.ItemDescription)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Item.ShopLink)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.ItemQty)
+                                </td>
+                            </tr>
+                            }
+                        </table>
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ListDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ListDescription)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category.CategoryName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PplQty)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PplQty)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-
-    </dl>
-</div>
-
-
-<hr />
-<h3>Items</h3>
-<div class="row">
-    <table class="table table-hover">
-        <tr>
-            <th>
-                Item Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Shop Links
-            </th>
-            <th>
-                Quantity
-            </th>
-        </tr>
-        @foreach (var item in Model.ListDetails)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => item.Item.ItemName)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Item.ItemDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Item.ShopLink)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.ItemQty)
-                </td>
-            </tr>
-        }
-    </table>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ListID }) |
-        @*@Html.ActionLink("Next", "Details", new { id = Model.ListID }) |*@
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

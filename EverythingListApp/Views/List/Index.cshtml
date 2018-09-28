@@ -1,89 +1,12 @@
-﻿@model IEnumerable<EverythingListApp.Models.List>
-
-@*@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
- @Html.ActionLink("Edit", "Edit", new { id = item.ListID }) |
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ListName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ListDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PplQty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Duration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ListName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ListDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PplQty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ListID }) |
-                @Html.ActionLink("Details", "Details", new { id = (item.ListID) }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ListID })
-            </td>
-        </tr>
-    }
-
-</table>*@
+﻿@model IEnumerable<EverythingListApp.ViewModels.ListWithFavoriteVM>
+@using EverythingListApp.Models;
+@using Microsoft.AspNet.Identity;
 
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
     ViewBag.Title = "Index";
     ViewBag.HomeActive = "active";
 }
-
 
 <!-- Banner -->
 <section class="tm-banner">
@@ -94,7 +17,7 @@
                 <div class="tm-banner-inner">
                     <h1 class="tm-banner-title">Find <span class="tm-yellow-text">EVERYTHING</span> LIST</h1>
                     <p class="tm-banner-subtitle">Always ready to wherever you go</p>
-                    <a href="#more" class="tm-banner-link">log in to get your own list</a>
+                    <a href="@Url.Action("MyList","List")" class="tm-banner-link">Go to MyList</a>
                 </div>
                 <img src="~/img/banner-1.jpg" alt="Image" />
             </li>
@@ -102,7 +25,7 @@
                 <div class="tm-banner-inner">
                     <h1 class="tm-banner-title"><span class="tm-yellow-text">Stress free</span> travelling to </h1>
                     <p class="tm-banner-subtitle">Wonderful Destinations</p>
-                    <a href="#more" class="tm-banner-link">log in to get your own list</a>
+                    <a href="@Url.Action("Register","Account")" class="tm-banner-link">Register to get your own list</a>
                 </div>
                 <img src="~/img/banner-2.jpg" alt="Image" />
             </li>
@@ -110,7 +33,7 @@
                 <div class="tm-banner-inner">
                     <h1 class="tm-banner-title"> <span class="tm-yellow-text">Your assistant</span> of all time</h1>
                     <p class="tm-banner-subtitle">Just pack up and go!</p>
-                    <a href="#more" class="tm-banner-link">log in to get your own list</a>
+                    <a href="@Url.Action("Login","Account")" class="tm-banner-link">login to get your own list</a>
                 </div>
                 <img src="~/img/banner-3.jpg" alt="Image" />
             </li>
@@ -122,100 +45,30 @@
 <section class="container tm-home-section-1" id="more">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-6">
-            <!-- Nav tabs -->
-            <div class="tm-home-box-1">
-                <ul class="nav nav-tabs tm-white-bg" role="tablist" id="hotelCarTabs">
-                    <li role="presentation" class="active">
-                        <a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">Register</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#car" aria-controls="car" role="tab" data-toggle="tab">Log in</a>
-                    </li>
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
-                        <div class="tm-search-box effect2">
-                            <form action="#" method="post" class="hotel-search-form">
-                                <div class="tm-form-inner">
-                                    <div class="form-group">
-                                        <input type="text" id="FullName" class="form-control" placeholder="Enter Full Name" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" id="Email" class="form-control" placeholder="Enter Email" />
-
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" id="Password" class="form-control" placeholder="Enter password" />
-
-                                    </div>
-                                    <div class="form-group margin-bottom-0">
-                                        <input type="password" id="ConfirmPassword" class="form-control" placeholder="Confirm password" />
-
-                                    </div>
-                                </div>
-                                <div class="form-group tm-yellow-gradient-bg text-center">
-                                    <button type="submit" name="submit" class="tm-yellow-btn">Register</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade tm-white-bg" id="car">
-                        <div class="tm-search-box effect2">
-                            <form action="#" method="post" class="hotel-search-form">
-                                <div class="tm-form-inner">
-                                    <div class="form-group">
-                                        <input type="email" id="Email" class="form-control" placeholder="Enter Email" />
-
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" id="Password" class="form-control" placeholder="Enter password" />
-
-                                    </div>
-                                    <div class="checkbox">
-                                        <input type="checkbox" id="RememberMe" name="Rememberme" value="false">
-                                        <input name="RememberMe" type="hidden" value="true">
-                                        <label for="RememberMe">Remember me?</label>
-
-                                    </div>
-
-                                </div>
-                                <div class="form-group tm-yellow-gradient-bg text-center">
-                                    <button type="submit" name="submit" class="tm-yellow-btn">Log in</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+            <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
+                <img src="~/img/index-01.jpg" alt="image" class="img-responsive">
+                <div class="tm-green-gradient-bg tm-city-price-container">
+                    <span>worry less</span>
                 </div>
             </div>
         </div>
-
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
                 <img src="~/img/index-01.jpg" alt="image" class="img-responsive">
-
                 <div class="tm-green-gradient-bg tm-city-price-container">
                     <span>worry less</span>
-
                 </div>
-
             </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
                 <img src="~/img/index-02.jpg" alt="image" class="img-responsive">
-
                 <div class="tm-red-gradient-bg tm-city-price-container">
                     <span>explore more</span>
-
                 </div>
-
             </div>
         </div>
     </div>
-
-
 </section>
 
 <!-- white bg -->
@@ -228,91 +81,68 @@
                 <div class="col-lg-4 col-md-3 col-sm-3"><hr></div>
             </div>
 
-@foreach (var item in Model)
-{
-            <div class="col-lg-4">
-                <div class="tm-home-box-3">
-
-                    <div class="tm-home-box-3-info">
-                        <p class="tm-home-box-3-description">@Html.DisplayFor(modelItem => item.ListName)</p>
-                        <div class="tm-home-box-2-container">
-                            <span id="fav-@item.ListID" class="favorite"> <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a></span>
-                           <a href="@Url.Action("Details","List", new { id = (item.ListID) })" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3"> Detail </span></a> 
-                            @*<a href="@Url.Action("Edit","List", new { id = (item.ListID) })" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>*@
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3">
+                        <div class="tm-home-box-3">
+                            <div class="tm-home-box-3-info">
+                                <p class="tm-home-box-3-description">
+                                    @Html.DisplayFor(modelItem => item.ListName)
+                                </p>
+                                <div class="tm-home-box-2-container">
+                                    <span id="fav-@item.ListID" class="favorite">
+                                        @*@{string checkvalue = (item.Favorite) ? "checked" : "";}
+                                            <input type="checkbox" id="@item.ListID" name="@item.ListID" class="favorite" @checkvalue />*@
+                                        <a href="#" class="tm-home-box-2-link">
+                                            <i class="fa fa-heart tm-home-box-2-icon border-right"></i>
+                                        </a>
+                                    </span>
+                                    <a href="@Url.Action("Details","List", new { id = (item.ListID) })" class="tm-home-box-2-link">
+                                        <span class="tm-home-box-2-description box-3"> Detail </span>
+                                    </a>
+                                    @*<a href="@Url.Action("Edit","List", new { id = (item.ListID) })" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>*@
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-}
-            <div class="col-lg-4">
-                <div class="tm-home-box-3">
-
-                    <div class="tm-home-box-3-info">
-                        <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-                        <div class="tm-home-box-2-container">
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                            <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            forea
-            <div class="col-lg-4">
-                <div class="tm-home-box-3">
-
-                    <div class="tm-home-box-3-info">
-                        <p class="tm-home-box-3-description">Proin gravida nibhvell velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum</p>
-                        <div class="tm-home-box-2-container">
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-heart tm-home-box-2-icon border-right"></i></a>
-                            <a href="#" class="tm-home-box-2-link"><span class="tm-home-box-2-description box-3">Travel</span></a>
-                            <a href="#" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
 
         </div>
     </div>
 </section>
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-<script>
-    $(function () {
 
-        $('#favorite').click(function (e) {
-            var gg = $('#grocery_item').val();
-            var gg2 = $('#grocery_amount').val();
-            if (gg != "" && gg2 != "") {
-                //alert(gg);
-                var jsonObject = {
-                    "Grocery_item": gg,
-                    "Grocery_amount": gg2
-                };
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+
+        $(function () {
+
+            $('.favorite').change(function () {
+                var listid = $(this).attr('id');
+                var ischecked = $(this).is(':checked');
+                var action = (!ischecked) ? "remove" : "add";
+
+                //alert(action);
+                //alert('changed >> ' + listid);
 
                 $.ajax({
-                    url: "@Url.Action("GrocerySave")",
+                    url: "@Url.Action("Favorite")",
                     type: "POST",
-                    data: JSON.stringify(jsonObject),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
+                    data: { listid: listid, action: action },
                     error: function (response) {
                         alert(json.stringify(jsonObject));
                     },
                     success: function (response) {
-                        alert(response);
+                        if (response == "Invalid User!") alert("Please Login First!");
+                        console.log(response);
                     }
                 });
-            }
-            else {
-                alert("The textfield is empty");
-                return false;
-            }
 
 
+            });
         });
-    });
-</script>*@
-
-
+    </script>
 }

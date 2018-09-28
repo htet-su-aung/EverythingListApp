@@ -9,16 +9,13 @@ namespace EverythingListApp.Models
 {
     public class Favorite
     {
-
         [Key, Column(Order = 0)]
-        public int UserID { get; set; }
+        public string UserID { get; set; }
 
         [Key, Column(Order = 1)]
         public int ListID { get; set; }
 
         public virtual List List { get; set; }
         public virtual ApplicationUser User { get; set; }
-
-
     }
 }

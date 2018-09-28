@@ -1,8 +1,12 @@
 ﻿@model EverythingListApp.ViewModels.ListDetailsQty
 
-@Html.HiddenFor(x => x.ItemID)
-@Html.CheckBoxFor(x => x.IsChecked)
-@Html.LabelFor(x => x.IsChecked, Model.ItemName)
-<div>@Html.EditorFor(model => model.ItemQty, new { htmlAttributes = new { @class = "", @value = Model.ItemQty.ToString() } })</div>
-<br />
-
+<div class="row">
+    <div class="col-md-2">
+        @Html.HiddenFor(x => x.ItemID)
+        @Html.CheckBoxFor(x => x.IsChecked)
+        @Html.LabelFor(x => x.IsChecked, Model.ItemName)
+    </div>
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.ItemQty, new { htmlAttributes = new { @class = "", @value = Model.ItemQty.ToString() } })
+    </div>
+</div>

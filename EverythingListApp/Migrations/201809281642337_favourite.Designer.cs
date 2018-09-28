@@ -7,13 +7,13 @@ namespace EverythingListApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class favorite : IMigrationMetadata
+    public sealed partial class favourite : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(favorite));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(favourite));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809230833425_favorite"; }
+            get { return "201809281642337_favourite"; }
         }
         
         string IMigrationMetadata.Source
