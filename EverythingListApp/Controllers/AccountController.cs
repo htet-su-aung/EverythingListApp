@@ -345,11 +345,11 @@ namespace EverythingListApp.Controllers
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-            //ApplicationDbContext db = new ApplicationDbContext();
-            //if(result == SignInStatus.Success)
-            //{
-
-            //}
+            if (result == SignInStatus.Success)
+            {
+                ApplicationDbContext db = new ApplicationDbContext();
+                Session["LoginUserName"] = db.Users.Where(x => x.Email == email).FirstOrDefault().FullName.ToString();
+            }
             switch (result)
             {
                 case SignInStatus.Success:
@@ -389,9 +389,11 @@ namespace EverythingListApp.Controllers
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FullName =model.FullName };
                 var result = await UserManager.CreateAsync(user);
+                
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    Session["LoginUserName"] = model.FullName;
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

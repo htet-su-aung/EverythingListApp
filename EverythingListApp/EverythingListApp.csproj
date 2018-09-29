@@ -194,7 +194,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LayoutTestController.cs" />
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\DbInitializer.cs" />
@@ -208,10 +207,6 @@
     <Compile Include="Migrations\201809220952246_addimage.cs" />
     <Compile Include="Migrations\201809220952246_addimage.Designer.cs">
       <DependentUpon>201809220952246_addimage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809281642337_favourite.cs" />
-    <Compile Include="Migrations\201809281642337_favourite.Designer.cs">
-      <DependentUpon>201809281642337_favourite.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -242,7 +237,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\fonts\Site.css" />
     <Content Include="Images\home-bg.jpg" />
     <Content Include="Images\profile-image.jpg" />
     <Content Include="Images\work-image1.jpg" />
@@ -326,15 +321,11 @@
     <Content Include="Views\List\Delete.cshtml" />
     <Content Include="Views\List\Details.cshtml" />
     <Content Include="Views\List\Edit.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\List\Index.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
-    <Content Include="Views\LayoutTest\Index.cshtml" />
-    <Content Include="Views\LayoutTest\Tours.cshtml" />
-    <Content Include="Views\LayoutTest\About.cshtml" />
-    <Content Include="Views\LayoutTest\Contact.cshtml" />
     <Content Include="Views\List\MyList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ListDetailsQty.cshtml" />
+    <Content Include="Views\List\MyFavList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,9 +355,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809220952246_addimage.resx">
       <DependentUpon>201809220952246_addimage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809281642337_favourite.resx">
-      <DependentUpon>201809281642337_favourite.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

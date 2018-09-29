@@ -1,0 +1,64 @@
+﻿@model IEnumerable<EverythingListApp.Models.Favorite>
+
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "MyFavList";
+    ViewBag.MyListActive = "active";
+}
+
+<!-- Banner -->
+<section class="tm-banner">
+    <!-- Flexslider -->
+    <div class="flexslider flexslider-banner">
+        <ul class="slides">
+            <li>
+                <div class="tm-banner-inner">
+                    <h1 class="tm-banner-title">Get <span class="tm-yellow-text">lists</span> </h1>
+                    <p class="tm-banner-subtitle">For Your Destinations</p>
+                    <a href="@Url.Action("Create","List")" class="tm-banner-link">Create</a>
+                </div>
+                <img src="~/img/banner-2.jpg" />
+            </li>
+
+        </ul>
+    </div>
+</section>
+
+<!-- gray bg -->
+<section class="container tm-home-section-1" id="more">
+   
+    <div class="section-margin-top">
+        <div class="row">
+            <div class="tm-section-header">
+                <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
+                <div class="col-lg-6 col-md-6 col-sm-6"><h2 class="tm-section-title">Favourite Lists</h2></div>
+                <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3">
+                    <div class="tm-home-box-3">
+                        <div class="tm-home-box-3-info">
+                            
+
+                            <p class="tm-home-box-3-description">
+                                @Html.DisplayFor(modelItem => @item.List.ListName)
+                            </p>
+                            <div class="tm-home-box-2-container">
+                                
+                                <a href="@Url.Action("Details","List", new { id = (item.ListID) })" class="tm-home-box-2-link">
+                                    <span class="tm-home-box-2-description box-3"> Detail </span>
+                                </a>
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                            }
+        </div>
+    </div>
+</section>
+
+

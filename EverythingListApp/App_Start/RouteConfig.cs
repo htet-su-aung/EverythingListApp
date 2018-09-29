@@ -16,7 +16,7 @@ namespace EverythingListApp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "LayoutTest", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "List", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

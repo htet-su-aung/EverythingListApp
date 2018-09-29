@@ -101,7 +101,17 @@ namespace EverythingListApp.Controllers
         {
             string userId = User.Identity.GetUserId();
             var tBLists = db.TBLists.Include(l => l.Category).Where(x => x.UserID == userId);
+          
             return View(tBLists.ToList());
+        }
+        // GET: List
+        [Authorize]
+        public ActionResult MyFavList()
+        {
+            string userId = User.Identity.GetUserId();
+         
+            var favlists = db.Favorite.Where(x => x.UserID == userId);
+            return View(favlists.ToList());
         }
 
         // GET: List/Details/5

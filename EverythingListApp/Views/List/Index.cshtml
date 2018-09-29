@@ -47,10 +47,10 @@
 <section class="container tm-home-section-1" id="more">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
-                <img src="~/img/index-01.jpg" alt="image" class="img-responsive">
-                <div class="tm-green-gradient-bg tm-city-price-container">
-                    <span>worry less</span>
+            <div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+                <img src="~/img/index-02.jpg" alt="image" class="img-responsive">
+                <div class="tm-red-gradient-bg tm-city-price-container">
+                    <span>get ready</span>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
             <div class="tm-section-header section-margin-top">
                 <div class="col-lg-4 col-md-3 col-sm-3"><hr></div>
                 <div class="col-lg-4 col-md-6 col-sm-6"><h2 class="tm-section-title"> Explore the lists </h2></div>
-                <div class="col-lg-4 col-md-3 col-sm-3"><hr></div>
+                <div class="col-lg-4 col-md-3 col-sm-3"><hr> Tips : click the checkbox beside the lists of your favourite to add to your favourite lists </div>
             </div>
 
             <div class="row">
@@ -88,17 +88,13 @@
                 {
                     <div class="col-lg-3">
                         <div class="tm-home-box-3">
-                            <div class="tm-home-box-3-info">
+                            <div class="tm-home-box-3-info"> 
                                 <p class="tm-home-box-3-description">
                                     @Html.DisplayFor(modelItem => item.ListName)
                                 </p>
                                 <div class="tm-home-box-2-container">
                                     <span id="fav-@item.ListID" class="favorite">
                                       
-                                                                                    @*@{string checkvalue = (item.Favorite) ? "checked" : "";}
-        <a class="tm-home-box-2-link">  <input type="checkbox" id="@item.ListID" name="@item.ListID" class="favorite" @checkvalue /> </a>*@
-                                            @*@{string checkvalue = (item.Favorite) ? "checked" : "";}
-                                           <a class="tm-home-box-2-link"> <input class="favorite red-heart-checkbox" id="@item.ListID" name="@item.ListID" type='checkbox'> </a>*@
                                             <a class="tm-home-box-2-link">
                                                 @{string checkvalue = (item.Favorite) ? "checked" : "";}
                                                 <input class="favorite" type="checkbox" id="@item.ListID" name="@item.ListID" @checkvalue/> 
@@ -110,7 +106,7 @@
                                     <a href="@Url.Action("Details","List", new { id = (item.ListID) })" class="tm-home-box-2-link">
                                         <span class="tm-home-box-2-description box-3"> Detail </span>
                                     </a>
-                                    @*<a href="@Url.Action("Edit","List", new { id = (item.ListID) })" class="tm-home-box-2-link"><i class="fa fa-edit tm-home-box-2-icon border-left"></i></a>*@
+                                   
                                 </div>
                             </div>
                         </div>

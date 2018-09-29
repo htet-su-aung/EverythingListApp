@@ -6,6 +6,14 @@
 <h2>&nbsp;</h2>
 <section class="container" id="more">
     <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+    </div>
+    <br/><br />
+    <div class="row">
         <div class="col-lg-10 col-md-10 col-sm-10 col-md-offset-1">
             <!-- Nav tabs -->
             <div class="">
@@ -54,12 +62,9 @@
             </div>
         </div>
     </div>
+    
 </section>
-<div class="col-md-4">
-    <section id="socialLoginForm">
-        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-    </section>
-</div>
+
 
 
 @section Scripts {

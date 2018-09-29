@@ -13,7 +13,7 @@
         <ul class="slides">
             <li>
                 <div class="tm-banner-inner">
-                    <h1 class="tm-banner-title">Find <span class="tm-yellow-text">get your</span> lists</h1>
+                    <h1 class="tm-banner-title"> Get your<span class="tm-yellow-text">lists</span> </h1>
                     <p class="tm-banner-subtitle">For Your Destinations</p>
                     <a href="@Url.Action("Create","List")" class="tm-banner-link">Create</a>
                 </div>
@@ -67,46 +67,6 @@
 }
         </div>
     </div>
-    <div class="section-margin-top">
-        <div class="row">
-            <div class="tm-section-header">
-                <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
-                <div class="col-lg-6 col-md-6 col-sm-6"><h2 class="tm-section-title">Favourite Lists</h2></div>
-                <div class="col-lg-3 col-md-3 col-sm-3"><hr></div>
-            </div>
-        </div>
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-lg-4">
-                    <div class="tm-tours-box-1">
-
-                        <div class="tm-tours-box-1-info">
-                            <div class="tm-tours-box-1-info-left">
-                                <p class="text-uppercase margin-bottom-20">
-                                    <a href="@Url.Action("Edit","List", new { id = (item.ListID) })">
-                                        @Html.DisplayFor(modelItem => item.ListName)
-                                    </a>
-                                </p>
-                                <p class="gray-text">Start date : @Html.DisplayFor(modelItem => item.StartDate)</p> <br />
-                                <p class="gray-text">End date : @Html.DisplayFor(modelItem => item.StartDate)</p>
-                            </div>
-                            <div class="tm-tours-box-1-info-right">
-                                <p class="gray-text tours-1-description">@Html.DisplayFor(modelItem => item.ListDescription)</p>
-                            </div>
-                        </div>
-                        <div class="tm-tours-box-1-link">
-                            <div class="tm-tours-box-1-link-left">
-                                Duration: @Html.DisplayFor(modelItem => item.Duration)
-                            </div>
-                            <a href="@Url.Action("Details","List", new { id = (item.ListID) })" class="tm-tours-box-1-link-right">
-                                Detail
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
+   
 </section>
 
