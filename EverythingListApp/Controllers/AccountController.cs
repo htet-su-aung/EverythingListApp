@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EverythingListApp.Models;
+using Facebook;
 
 namespace EverythingListApp.Controllers
 {
@@ -327,6 +328,15 @@ namespace EverythingListApp.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
+           
+
+            var identity = AuthenticationManager.GetExternalIdentity(DefaultAuthenticationTypes.ExternalCookie);
+            var accessToken = identity.FindFirstValue("FacebookAccessToken");
+            dynamic userInfo = new FacebookClient(accessToken).Get("/me?fields=email,first_name,last_name");
+
+            string email = userInfo["email"];
+            string fullName = userInfo["first_name"] + " " + userInfo["last_name"];
+
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
             if (loginInfo == null)
             {
@@ -335,6 +345,11 @@ namespace EverythingListApp.Controllers
 
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            //ApplicationDbContext db = new ApplicationDbContext();
+            //if(result == SignInStatus.Success)
+            //{
+
+            //}
             switch (result)
             {
                 case SignInStatus.Success:
@@ -348,7 +363,7 @@ namespace EverythingListApp.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email, FullName= fullName});
             }
         }
 
@@ -372,7 +387,7 @@ namespace EverythingListApp.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FullName =model.FullName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

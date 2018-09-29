@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using EverythingListApp.Models;
+using Microsoft.Owin.Security.Facebook;
 
 namespace EverythingListApp
 {
@@ -57,6 +58,21 @@ namespace EverythingListApp
             //app.UseFacebookAuthentication(
             //   appId: "",
             //   appSecret: "");
+
+            app.UseFacebookAuthentication(new FacebookAuthenticationOptions
+            {
+                AppId = "231908400817878",
+                AppSecret = "33d455f2a6fd2b775b71d46db23c6ac9",
+                Scope = { "email" },
+                Provider = new FacebookAuthenticationProvider
+                {
+                    OnAuthenticated = context =>
+                    {
+                        context.Identity.AddClaim(new System.Security.Claims.Claim("FacebookAccessToken", context.AccessToken));
+                        return System.Threading.Tasks.Task.FromResult(true);
+                    }
+                }
+            });
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

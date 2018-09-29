@@ -6,6 +6,8 @@
     Layout = "~/Views/Shared/_Layout1.cshtml";
     ViewBag.Title = "Index";
     ViewBag.HomeActive = "active";
+   
+
 }
 
 <!-- Banner -->
@@ -92,11 +94,18 @@
                                 </p>
                                 <div class="tm-home-box-2-container">
                                     <span id="fav-@item.ListID" class="favorite">
-                                        @*@{string checkvalue = (item.Favorite) ? "checked" : "";}
-                                            <input type="checkbox" id="@item.ListID" name="@item.ListID" class="favorite" @checkvalue />*@
-                                        <a href="#" class="tm-home-box-2-link">
-                                            <i class="fa fa-heart tm-home-box-2-icon border-right"></i>
-                                        </a>
+                                      
+                                                                                    @*@{string checkvalue = (item.Favorite) ? "checked" : "";}
+        <a class="tm-home-box-2-link">  <input type="checkbox" id="@item.ListID" name="@item.ListID" class="favorite" @checkvalue /> </a>*@
+                                            @*@{string checkvalue = (item.Favorite) ? "checked" : "";}
+                                           <a class="tm-home-box-2-link"> <input class="favorite red-heart-checkbox" id="@item.ListID" name="@item.ListID" type='checkbox'> </a>*@
+                                            <a class="tm-home-box-2-link">
+                                                @{string checkvalue = (item.Favorite) ? "checked" : "";}
+                                                <input class="favorite" type="checkbox" id="@item.ListID" name="@item.ListID" @checkvalue/> 
+                                               
+                                                
+                                            </a>
+                                        
                                     </span>
                                     <a href="@Url.Action("Details","List", new { id = (item.ListID) })" class="tm-home-box-2-link">
                                         <span class="tm-home-box-2-description box-3"> Detail </span>

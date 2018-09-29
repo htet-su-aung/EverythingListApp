@@ -16,8 +16,9 @@
                     <li>
                         <a href="@Url.Action("Register","Account")">Register</a>
                     </li>
+                   
                 </ul>
-
+               
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
@@ -54,6 +55,12 @@
         </div>
     </div>
 </section>
+<div class="col-md-4">
+    <section id="socialLoginForm">
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </section>
+</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
